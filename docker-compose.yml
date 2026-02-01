@@ -1,0 +1,29 @@
+services:
+  db:
+    image: postgres:15
+    container_name: ai-resume-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: ai_resume_builder
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  web:
+    build: .
+    container_name: ai-resume-web
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/ai_resume_builder
+      AUTH_SECRET: replace-me
+      AUTH_URL: http://localhost:3000
+    command: npm start
+
+volumes:
+  pgdata:
