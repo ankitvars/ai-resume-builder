@@ -39,6 +39,7 @@ import {
   validateUsername
 } from './validation';
 import { useState } from 'react';
+import { signIn } from 'next-auth/react';
 
 interface FormErrors {
   email?: string;
@@ -214,7 +215,7 @@ export default function SignUpPage() {
         body: JSON.stringify({
           email: formData.email,
           password: formData.password,
-          username: formData.username
+          name: formData.username
         })
       });
 
@@ -226,7 +227,11 @@ export default function SignUpPage() {
         }));
       } else {
         // Redirect to signin or dashboard
-        router.push('/signin?signup=success');
+        await signIn('credentials', {
+          email: formData.email,
+          password: formData.password,
+          callbackUrl: '/dashboard',
+        });
       }
     } catch (error) {
       setErrors((prev) => ({
