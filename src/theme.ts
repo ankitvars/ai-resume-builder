@@ -1,8 +1,16 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme, PaletteMode } from '@mui/material/styles';
 
-export const theme = createTheme({
-  palette: {
-    mode: 'light'
-  }
-});
-
+export function getTheme(mode: PaletteMode) {
+  return createTheme({
+    palette: {
+      mode,
+      background: {
+        default: mode === 'dark' ? '#0b0b0b' : '#fafafa',
+        paper: mode === 'dark' ? '#121212' : '#ffffff'
+      }
+    },
+    typography: {
+      fontFamily: ['Inter', 'Roboto', 'Arial', 'sans-serif'].join(',')
+    }
+  });
+}

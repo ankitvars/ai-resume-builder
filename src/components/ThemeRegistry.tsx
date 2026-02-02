@@ -1,14 +1,14 @@
 'use client';
 
+import React, { useMemo } from 'react';
 import { ThemeProvider, CssBaseline } from '@mui/material';
-import { ReactNode } from 'react';
-import { theme } from '@/theme';
+import { getTheme } from '@/theme';
+import { ThemeProviderClient, useThemeContext } from '@/context/ThemeContext';
 
-type Props = {
-  children: ReactNode;
-};
+function InnerTheme({ children }: { children: React.ReactNode }) {
+  const { mode } = useThemeContext();
+  const theme = useMemo(() => getTheme(mode), [mode]);
 
-export default function ThemeRegistry({ children }: Props) {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -17,3 +17,10 @@ export default function ThemeRegistry({ children }: Props) {
   );
 }
 
+export default function ThemeRegistry({ children }: { children: React.ReactNode }) {
+  return (
+    <ThemeProviderClient>
+      <InnerTheme>{children}</InnerTheme>
+    </ThemeProviderClient>
+  );
+}

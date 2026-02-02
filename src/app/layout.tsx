@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
-import ThemeRegistry from '@/components/ThemeRegistry';
+import ClientMuiBoundary from './client-mui-boundary';
 
 export const metadata: Metadata = {
-  title: 'AI Resume Builder',
-  description: 'AI-powered resume and portfolio builder'
+  title: 'AI Resume Builder'
 };
 
 export default function RootLayout({
@@ -14,9 +13,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ThemeRegistry>{children}</ThemeRegistry>
+        <ClientMuiBoundary>{children}</ClientMuiBoundary>
       </body>
     </html>
   );
 }
-
