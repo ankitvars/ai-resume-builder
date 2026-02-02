@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import ClientMuiBoundary from './client-mui-boundary';
+import Providers from './providers';
 
 export const metadata: Metadata = {
   title: 'AI Resume Builder'
@@ -13,7 +14,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ClientMuiBoundary>{children}</ClientMuiBoundary>
+        <Providers>
+          <ClientMuiBoundary>{children}</ClientMuiBoundary>
+        </Providers>
       </body>
     </html>
   );
