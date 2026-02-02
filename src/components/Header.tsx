@@ -42,7 +42,7 @@ export default function Header() {
                 <Button
                   variant="contained"
                   size="small"
-                  onClick={() => signOut()}
+                  onClick={() => signOut({ callbackUrl: '/' })}
                 >
                   Sign out
                 </Button>
@@ -50,9 +50,10 @@ export default function Header() {
             ) : (
               <>
                 <Button
+                  component={Link}
+                  href="/signin"
                   variant="outlined"
                   size="small"
-                  onClick={() => signIn()}
                 >
                   Sign in
                 </Button>
