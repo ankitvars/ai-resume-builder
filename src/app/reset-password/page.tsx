@@ -145,7 +145,7 @@ export default function ResetPassword() {
       } else {
         setError(data.message || 'An error occurred. Please try again.');
       }
-    } catch (err) {
+    } catch {
       setError('An error occurred. Please try again.');
     } finally {
       setLoading(false);

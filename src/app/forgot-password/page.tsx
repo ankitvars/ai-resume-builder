@@ -1,25 +1,24 @@
 'use client';
 
-import { useState } from 'react';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import EmailIcon from '@mui/icons-material/Email';
+import SendIcon from '@mui/icons-material/Send';
 import {
+  Alert,
   Box,
   Button,
   Card,
   CardContent,
+  CircularProgress,
   Container,
+  InputAdornment,
+  keyframes,
   Stack,
   TextField,
-  Typography,
-  InputAdornment,
-  Alert,
-  Link,
-  CircularProgress,
-  keyframes
+  Typography
 } from '@mui/material';
-import EmailIcon from '@mui/icons-material/Email';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import SendIcon from '@mui/icons-material/Send';
+import { useState } from 'react';
 
 // Keyframe animations
 const float = keyframes`
@@ -70,7 +69,7 @@ export default function ForgotPassword() {
       } else {
         setError('An error occurred. Please try again.');
       }
-    } catch (err) {
+    } catch {
       setError('An error occurred. Please try again.');
     } finally {
       setLoading(false);
